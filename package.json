@@ -2,7 +2,7 @@
   "engines": {
     "node": "12.16.2"
   },
-  "name": "project2",
+  "name": "portfolio",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
