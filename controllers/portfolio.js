@@ -1,5 +1,5 @@
 const express = require('express');
-const characterController = express.Router();
+const router = express.Router();
 const Character = require('../models/characters.js');
 
 // const isAuthenticated = (req, res, next) => {
@@ -18,7 +18,7 @@ const Character = require('../models/characters.js');
 
 
 /*  Index  */
-characterController.get('/', (req, res) => {
+router.get('/', (req, res) => {
     Character.find({}, (error, allCharacters) => {
         res.render('Index', {
             characters: allCharacters,
@@ -28,12 +28,12 @@ characterController.get('/', (req, res) => {
 });
 
 /*  New  */
-characterController.get('/new', (req, res) => {
+router.get('/new', (req, res) => {
     res.render('New');
 });
 
 /*  Create  */
-characterController.post('/', (req, res) => {
+router.post('/', (req, res) => {
     if (req.body.track === 'on') {
         req.body.track = true;
     } else {
@@ -48,14 +48,14 @@ characterController.post('/', (req, res) => {
 
 
 /*  Delete  */
-characterController.delete('/:id', (req, res) => {
+router.delete('/:id', (req, res) => {
     Character.findByIdAndRemove(req.params.id, (err, data) => {
         res.redirect('/JAguilar');
     });
 });
 
 /*  Show  */
-characterController.get('/:id', (req, res) => {
+router.get('/:id', (req, res) => {
     Character.findById(req.params.id, (error, foundCharacter) => {
         res.render('Show', {
             character: foundCharacter,
@@ -64,7 +64,7 @@ characterController.get('/:id', (req, res) => {
 });
 
 /*  Edit  */
-characterController.get('/edit/:id', (req, res) => {
+router.get('/edit/:id', (req, res) => {
     Character.findById(req.params.id, (error, foundCharacter) => {
         res.render('Edit', { character: foundCharacter });
     });
@@ -88,4 +88,4 @@ characterController.put('/edit/:id', (req, res) => {
 });
 
 
-module.exports = characterController;
+module.exports = router;

@@ -12,6 +12,11 @@ class Index extends React.Component {
                     <body>
                         <fieldset className="character-info">
                             <legend><h2>About Me</h2></legend>
+                            <h4>I'm a student</h4>
+                            <div>First and foremost, I'm a student. I am always willing and driving to learn more. In this profession there is so much to learn and that can be done to improve. I seek to hone in and refine my skills as much as possible. There are always new languages to learn and new tools to put under my belt, and I have the drive to learn!</div>
+                            <br/>
+                            <h4>Experience</h4>
+                            <div>I started out learning the arts of manufacturing. I originally learned to program CNC machines in a high stress environment before switching my focus to software engineering. I have done hours upon hours of crafting websites both formal and personal using new techniques I have picked up along the way. I am excited to see what more I will create in the future.</div>
                         </fieldset>
                         <br/>
                     <fieldset className="character-info">

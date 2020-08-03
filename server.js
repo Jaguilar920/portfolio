@@ -8,6 +8,8 @@ const Character = require('./models/characters.js');
 const methodOverride = require('method-override');
 const characterController = require('./controllers/portfolio.js');
 
+
+
 require('dotenv').config();
 const port = process.env.PORT || 3000;
 // const userController = require('./controllers/users_controller.js');
@@ -20,6 +22,7 @@ const MONGODB_URI = process.env.MONGODB_URI || "localhost:3000/JAguilar";
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride('_method'));
+app.use('/JAguilar', characterController);
 // app.use(
 //     session({
 //         secret: process.env.SECRET,
@@ -119,8 +122,7 @@ router.put('/:id', async (req, res) => {
 //         res.redirect('/sessions/new');
 //     });
 // });
-const characterController = require('./controllers/portfolio.js');
-app.use('/JAguilar', characterController);
+
 
 app.listen(port, () => {
     console.log('listening on: ' + port);
