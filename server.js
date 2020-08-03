@@ -6,6 +6,7 @@ const app = express();
 const mongoose = require('mongoose');
 const Character = require('./models/characters.js');
 const methodOverride = require('method-override');
+const characterController = require('./controllers/portfolio.js');
 
 require('dotenv').config();
 const port = process.env.PORT || 3000;
