@@ -88,4 +88,4 @@ characterController.put('/edit/:id', (req, res) => {
 });
 
 
-module.exports = router;
+module.exports = characterController;
