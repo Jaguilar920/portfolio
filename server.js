@@ -3,10 +3,12 @@
 /////////////////
 const express = require('express');
 const app = express();
+require('dotenv').config();
 const mongoose = require('mongoose');
 const Character = require('./models/characters.js');
 const methodOverride = require('method-override');
 const characterController = require('./controllers/portfolio.js');
+const mongoConfig = { useNewUrlParser: true, useUnifiedTopology: true}
 
 
 
@@ -35,11 +37,10 @@ app.engine('jsx', require('express-react-views').createEngine());
 
 // app.use('/user', userController);
 
-mongoose.connect(MONGODB_URI, {
-    useNewUrlParser: true,
-    useFindAndModify: true,
-    useUnifiedTopology: true,
+mongoose.connect(MONGODB_URI, mongoConfig, (err)=>{
+    console.log('connected to mongo')
 });
+
 mongoose.connection.once('open', () => {
     console.log('mdb connect')
 });
@@ -54,14 +55,15 @@ mongoose.connection.once('open', () => {
 //     }
 // });
 
-// router.get('/', async (req, res) => {
-//     try {
-//         const characters = await Character.find({});
-//         res.status(200).json(characters);
-//     } catch (error) {
-//         res.status(400).json(error);
-//     }
-// });
+app.get('/')
+.get( async (req, res)=>{
+    const chars = await Character.find({})
+    res.json(chars)
+})
+
+// app.get('/resume', (req, res)=> {
+    
+// })
 
 // router.delete('/:id', async (req, res) => {
 //     try {
