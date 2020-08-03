@@ -21,6 +21,7 @@ const port = process.env.PORT || 3000;
 const MONGODB_URI = process.env.MONGODB_URI || "localhost:3000/JAguilar";
 
 /*  Middle */
+app.use(express.json())
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride('_method'));
