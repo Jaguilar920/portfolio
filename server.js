@@ -13,7 +13,7 @@ const port = process.env.PORT || 3000;
 // const session = require('express-session');
 // const User = require('./models/users.js');
 // const bcrypt = require('bcryptjs');
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/JAguilar';
+const MONGODB_URI = process.env.MONGODB_URI || "localhost:3000/JAguilar";
 
 /*  Middle */
 app.use(express.static('public'));
@@ -38,6 +38,46 @@ mongoose.connect(MONGODB_URI, {
 });
 mongoose.connection.once('open', () => {
     console.log('mdb connect')
+});
+
+router.post('/', async (req, res) => {
+    try {
+        console.log(req.body);
+        const createdCharacter = await Character.create(req.body);
+        res.status(200).json(createdCharacter);
+    } catch (error) {
+        res.status(400).json(error);
+    }
+});
+
+router.get('/', async (req, res) => {
+    try {
+        const characters = await Character.find({});
+        res.status(200).json(characters);
+    } catch (error) {
+        res.status(400).json(error);
+    }
+});
+
+router.delete('/:id', async (req, res) => {
+    try {
+        const deletedCharacter = await Character.findByIdAndDelete(req.params.id);
+        res.status(200).json(deletedCharacter);
+    } catch (error) {
+        res.status(400).json(error);
+    }
+});
+
+router.put('/:id', async (req, res) => {
+    try {
+        const updatedCharacter = await Character.findByIdAndUpdate(
+            req.params.id,
+            req.body
+        );
+        res.status(200).json(updatedCharacter);
+    } catch (error) {
+        res.status(400).json(error);
+    }
 });
 
 
